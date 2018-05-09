@@ -8,12 +8,6 @@
 
 namespace controller;
 
-/**
- * Database strandkorb
- * name, bild, tagsystem, discount, stockcount, price, weight, display, (time - 2-5days), date
- * kommen in lager - liquidation falls discount > 0
- */
-
 use services\DatabaseSeed;
 
 class BaseController
@@ -43,10 +37,16 @@ class BaseController
         $this->httpHandler  = new HttpHandler();
         $this->renderer->sessionManager->startSession();
         $this::$dontRender = false;
+        $this->controllerName=$this->getControllerName();
+        echo$this->controllerName;
     }
 
     public function getController(){
         return$this;
+    }
+
+    protected function getControllerName(){
+        return strtolower(substr(substr_replace(get_called_class(),"",-10),11));
     }
 
     /**
@@ -59,7 +59,7 @@ class BaseController
         if (!BaseController::$dontRender){
             //$this->setAlerts();
             $this->renderer->renderLayout('header.php');
-            $this->renderer->renderByFileName("/view/" .$this->controllerName . "/" . $this->viewTemplate);
+            $this->renderer->renderByFileName("/view/controller/" .$this->controllerName . "/" . $this->viewTemplate);
             $this->renderer->renderLayout('footer.php');
         }
 

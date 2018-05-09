@@ -1,7 +1,6 @@
 <?php
 
 namespace models;
-//use services\DBConnection;
 use ReflectionClass;
 use services\DBConnection;
 use services\QueryBuilder;
@@ -19,7 +18,6 @@ class Entity
     protected $id;
     protected $validator;
     protected $valuesSet = [];
-    //protected $properties= [];
     protected $tableName;
     protected $dbConnection;
     protected $queryBuilder;
