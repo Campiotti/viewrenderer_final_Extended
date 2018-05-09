@@ -6,7 +6,7 @@
  * Time: 09:00
  */
 
-/*
+/**
 * File: SimpleImage.php
 * Author: Simon Jarvis
 * Copyright: 2006 Simon Jarvis
