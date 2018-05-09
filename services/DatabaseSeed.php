@@ -27,7 +27,10 @@ class DatabaseSeed
  * this will create a new connection to the db and delete the whole database
  * next it will create all tables with their primary keys
  * after that all constraints will be created
- * last test data is inserted in the newly created tables
+ * last test data is inserted in the newly created tables.
+ * - New -
+ * reads the two files set in the database.ini file and executes them (ddl regardless, but dml only if it's not empty)
+ * You can find out what ddl and dml mean online. (Simple: ddl - tables , dml - data)
  */
     public function resetDatabase(){
         session_destroy();
@@ -39,7 +42,9 @@ class DatabaseSeed
         $this->dbConnection->prepare($this->dropDatabase($ini['database']))->execute();
         $this->dbConnection->prepare($this->createDatabase($ini['database']))->execute();
         $this->dbConnection->prepare($this->useDatabase($ini['database']))->execute();
-		$this->dbConnection->exec(file_get_contents('config/DBseed.sql'));
+		$this->dbConnection->exec(file_get_contents('config/'.$ini['ddl']));
+		if($ini['dml']!="" && strlen($ini['dml'])<1)
+		    $this->dbConnection->exec(file_get_contents('config/'.$ini['dml']));
 		//You could instead of using a direct .sql script also use the models and the query-builder to create tables and default data as seen below.
         /*//Create Table Statements
         $this->dbConnection->prepare('CREATE TABLE IF NOT EXISTS DBUser (ID INT PRIMARY KEY AUTO_INCREMENT,Email varchar(255),Username varchar(100),Password varchar(255),EndDate datetime);')->execute();
