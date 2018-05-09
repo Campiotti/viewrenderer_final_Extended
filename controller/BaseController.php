@@ -38,15 +38,22 @@ class BaseController
         $this->renderer->sessionManager->startSession();
         $this::$dontRender = false;
         $this->controllerName=$this->getControllerName();
-        echo$this->controllerName;
     }
 
     public function getController(){
         return$this;
     }
 
+    /**
+     * Universal function that works for all controllers without any required help which is used for differentiating between
+     * different controllers in the view folder so that a file like view.php can be used by base and another controller.
+     * You can disable the current method and instead use a reflection class if you so desire, both methods work and were tested.
+     * @return string controller name (without Controller at the end, can be removed by removing the substr_replace.
+     */
     protected function getControllerName(){
         return strtolower(substr(substr_replace(get_called_class(),"",-10),11));
+        //$r= new \ReflectionClass($this);
+        //return strtolower(substr_replace($r->getShortName(),"",-10));
     }
 
     /**
@@ -112,6 +119,14 @@ class BaseController
      */
     public function partners(){
         $this->renderer->headerIndex = 3;
+    }
+
+    /**
+     * Test function which helps you see if your controllers are setup correctly and are running as they should.
+     * To be sure that it works, also verify that contents of the test.php file in the view folder are displayed as well.
+     */
+    public function test(){
+        echo$this->controllerName."<-- is controller name";
     }
 
     /**
