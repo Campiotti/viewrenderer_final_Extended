@@ -95,9 +95,7 @@ class SessionManager
      * @return bool
      */
     public function isSet($array){
-        if (isset($_SESSION[$array])){
-            return true;
-        }
+        return isset($_SESSION[$array]);
     }
 
     /**
@@ -127,9 +125,7 @@ class SessionManager
      * @return mixed
      */
     public function getCookie($name){
-        if (isset($_COOKIE[$name])) {
-            return$_COOKIE[$name];
-        }
+        return isset($_COOKIE[$name]);
     }
 
 }
