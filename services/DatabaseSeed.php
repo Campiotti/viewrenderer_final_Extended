@@ -7,10 +7,6 @@
  */
 
 namespace services;
-use models\Product;
-use models\product_tag;
-use models\Tag;
-use models\User;
 
 /**
  *
@@ -116,7 +112,7 @@ class DatabaseSeed
         return$stmt;
     }
 
-    private function getLongText(string $text){
+    /*private function getLongText(string $text){
         switch($text){
             case"bee movie":
                 return"According to all known laws of aviation,
@@ -151,5 +147,5 @@ As you can see, there's a whole loads to do, before school goes on. Phineas: Com
                 return "Example Description";
         }
 
-    }
+    }*/
 }
