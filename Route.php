@@ -38,7 +38,28 @@ class Route
             }
             @call_user_func_array([$controller, $function],array_slice($routerFragments,2));
         }else{
-            throw new Error("Page not found!!!!!!!!!!!!!!!!!", 404);
+            /*throw new Error("Damn Daniel back at nonexistent pages again😂😂😂😂😂😂😂
+             Page not found!!!!!!!!!!!!!!!!!", 404);*/?>
+            <head>
+                <title>Damn Daniel</title>
+                <script type='text/javascript'>
+                    var emoji = document.getElementById('emoji');
+                    function shuffle(){
+                        emoji.innerHTML=emoji.innerHTML.split('').sort(function(){return 0.5-Math.random()}).join('');
+                        setTimeout("shuffle()",1000);
+                    }
+                </script>
+                <script type="text/javascript"></script>
+            </head>
+            <body onload="shuffle()">
+                <div>
+                    <img src="http://i0.kym-cdn.com/photos/images/original/001/117/432/515.gif" style="width:100%; height:100%; z-index: -1;">
+                    <div style="z-index: 25; font-size: 4.20cm; top: 0; left: 0; position: absolute;">Page not found
+                        <span id="emoji">😂😂😂🤣🤣🤣😂😂😂😭😭😭😂😂</span>
+                </div>
+                    <script>shuffle()</script>
+            </body>
+        <?php
         }
 
     }
