@@ -277,7 +277,7 @@ class QueryBuilder
             $tmpI=0;
             foreach($this->statement['ColsWVals']['Columns'] as $colsWVal){
                 $this->parameters[] = $this->statement['ColsWVals']['Values'][$tmpI];
-                $statement .= $colsWVal.="=?,";
+                $statement .= $colsWVal."=?,"; // change to colsWVal.="=?,"; if it doesn't work.
                 $tmpI++;
             }
 
