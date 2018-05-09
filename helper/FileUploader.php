@@ -23,11 +23,11 @@ class fileUploader
     {
         //type 0 == image , type 1 == video
         if($type==0)
-        $target_dir = __DIR__."/../assets/images/products/";
+        $target_dir = __DIR__."/../assets/public/user_uploads/images/";
         elseif($type==1)
-            $target_dir = __DIR__."/../assets/movies/";
+            $target_dir = __DIR__."/../assets/public/user_uploads/videos/";
         else
-            $target_dir = __DIR__."/../assets/audio/";
+            $target_dir = __DIR__."/../assets/public/user_uploads/audio/";
         $target_file = $target_dir . basename($file["name"]);
         $extension= substr($file['name'], strripos($file['name'],'.'));
         $uploadOk = 1;
@@ -46,11 +46,11 @@ class fileUploader
                 $uploadOk = 0;
             }
         }
-// Check if file already exists
+// Check if file already exists (renames file if it does)
         if (file_exists($target_file)) {
             $file["name"]=uniqid().$extension;
             $target_file = $target_dir .  basename($file["name"]);
-            //$uploadOk = 1;
+            $uploadOk = 0;
         }
 // Check file size
         //Images can be 6bit deep 1920x1080 images max.
@@ -83,6 +83,6 @@ class fileUploader
                 return"";
             }
         }
-
+        return"";
     }
 }
