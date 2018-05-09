@@ -110,27 +110,6 @@ class DatabaseSeed
         $stmt = "use ".$dbName;
         return$stmt;
     }
-    private function product_tag($prod, $tags){
-        $product_tag=new product_tag();
-
-        $alreadyAdded=[];
-        $count=0;
-        for($a=0; $a<count($prod); $a++){
-            $count++;
-            for($i=0; $i<random_int(1,5);$i++){
-                $t=random_int(1,count($tags));
-                if(!in_array($t,$alreadyAdded)){
-                    array_push($alreadyAdded,$t);
-                    $tmp=['tagid'=>$t,'productid'=>$count];
-                    $_POST['data']=$tmp;
-                    $product_tag->clearEntity();
-                    $product_tag->patchEntity($tmp);
-                    $product_tag->save();
-                }
-            }
-            $alreadyAdded=[];
-        }
-    }
 
     private function getLongText(string $text){
         switch($text){
