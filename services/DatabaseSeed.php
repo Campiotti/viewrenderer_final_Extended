@@ -34,12 +34,13 @@ class DatabaseSeed
 		$ini = parse_ini_file('config/database.ini');
 		//var_dump($ini);
         $this->dbConnection = new \PDO($ini['engine'].':host='.$ini['host'].';',$ini['username'],$ini['password']);
-       // var_dump($this->dbConnection);
+        //var_dump($this->dbConnection);
         //$this->queryBuilder = new QueryBuilder();
         $this->dbConnection->prepare($this->dropDatabase($ini['database']))->execute();
         $this->dbConnection->prepare($this->createDatabase($ini['database']))->execute();
         $this->dbConnection->prepare($this->useDatabase($ini['database']))->execute();
 		$this->dbConnection->exec(file_get_contents('config/DBseed.sql'));
+		//You could instead of using a direct .sql script also use the models and the query-builder to create tables and default data as seen below.
         /*//Create Table Statements
         $this->dbConnection->prepare('CREATE TABLE IF NOT EXISTS DBUser (ID INT PRIMARY KEY AUTO_INCREMENT,Email varchar(255),Username varchar(100),Password varchar(255),EndDate datetime);')->execute();
         $this->dbConnection->prepare('CREATE TABLE IF NOT EXISTS Tags (ID INT PRIMARY KEY AUTO_INCREMENT,TagName varchar(100));')->execute();
@@ -81,12 +82,6 @@ class DatabaseSeed
 
         $product = new Product();
         $prod=[];
-        $prod[0] = ['userfk' =>'1','productname' =>'Cs🅱e 24/7 Support', 'image' =>'csbe_support.png','video'=>'small.mp4','stock' => 200,'price' => 100000, 'discount' =>0, 'description' =>'If the Clipboard data is in a format that the object does not support, the CanPaste property is False. For example, if you try to paste a bitmap into an object that only supports text, CanPaste will be False.'];
-        $prod[1] = ['userfk' =>'1','productname' =>'Supreme Kurt', 'image' =>'kurt..png','video'=>'avengers.mp4','stock' => 500,'price' => 200, 'discount' =>0.5, 'description' =>'„So, nun passt Alle gut auf. Ich zeige euch wie man einen Gott umbringt.“ (Prinzessin Mononoke)'];
-        $prod[2] = ['userfk' =>'1','productname' =>'Kurt The Cartoon', 'image' =>'maybe_kurt.png','video'=>'Phineas and Ferb - AinT Got Rhythm.mp4','stock' => 2100,'price' => 420, 'discount' =>0.21, 'description' =>'🙂🙂🙂🙂🙂🙂🙂🙂🙂😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭'];
-        $prod[3] = ['userfk' =>'2','productname' =>'The Emoji Movie', 'image' =>'maxresdefault.jpg','video'=>'Justice League Battlefield 1 [420 confirmed].mp4','stock' => 20,'price' => 360, 'discount' =>0, 'description' =>$this->getLongText("bee movie")];
-        $prod[4] = ['userfk' =>'1','productname' =>'Mr Kra🅱s', 'image' =>'maxresdefault (3).jpg','video'=>'small.mp4','stock' => 20,'price' => 360, 'discount' =>0, 'description' =>'Spongebob Squarepants'];
-        $prod[5] = ['userfk' =>'2','productname' =>'Cs🅱e private lessons', 'image' =>'schmitz_v3.png','video'=>'avengers.mp4','stock' => 1024,'price' => 1488, 'discount' =>0, 'description' =>'Get your IT certificate for free.'];
         $prod[6] = ['userfk' =>'2','productname' =>'John Scarce', 'image' =>'ScarceIsThicc.jpg','video'=>'cars.mp4','stock' => 50,'price' => 1942, 'discount' =>0.25, 'description' =>'Hey what\'s up guys it\'s Scarce here.'];
         $prod[7] = ['userfk' =>'2','productname' =>'Jeff 21JumpStreet', 'image' =>'JmDbE.gif','video'=>'mustang.mp4','stock' => 2100,'price' => 420, 'discount' =>0.21, 'description' =>'This is imagery of god himself.'];
         $prod[8] = ['userfk' =>'1','productname' =>'Careful when using JQuery', 'image' =>'schmitz_v5.png','video'=>'GTR.mp4','stock' => 253,'price' => 10, 'discount' =>0, 'description' =>'He will find you.'];
@@ -98,22 +93,7 @@ class DatabaseSeed
             $product->clearEntity();
             $product->patchEntity($p);
             $product->save();
-        }
-        $tag = new Tag();
-        $tags=[];
-        $tags[0]=['tagname'=>'CsBe'];
-        $tags[1]=['tagname'=>'Nesri'];
-        $tags[2]=['tagname'=>'Microsoft'];
-        $tags[3]=['tagname'=>'Copyright infringement'];
-        $tags[4]=['tagname'=>'SCRUM'];
-        foreach($tags as $t){
-            $_POST['data']=$tags;
-            $tag->clearEntity();
-            $tag->patchEntity($t);
-            $tag->save();
-        }
-
-        $this->product_tag($prod,$tags);*/
+        }*/
     }
 
 
